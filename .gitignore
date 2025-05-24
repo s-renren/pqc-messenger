@@ -28,3 +28,8 @@ npm-debug.log*
 
 # vercel
 .vercel
+
+# frourio
+**/$*.ts
+frourio.*.ts
+tests/setupMswHandlers.ts

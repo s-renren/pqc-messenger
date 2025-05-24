@@ -18,6 +18,9 @@
 
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "*.module.css": "${capture}.module.css.d.ts, ${capture}.module.css.d.ts.map"
+    "*.module.css": "${capture}.module.css.d.ts, ${capture}.module.css.d.ts.map",
+    "*.ts": "${capture}.test.ts",
+    "*.tsx": "${capture}.test.tsx",
+    "frourio.ts": "frourio.*.ts"
   }
 }

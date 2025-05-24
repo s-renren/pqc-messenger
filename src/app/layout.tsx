@@ -1,8 +1,9 @@
 'use client';
 
+import type { PropsWithChildren } from 'react';
 import '../styles/globals.css';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: PropsWithChildren): React.ReactElement {
   return (
     <html lang="ja">
       <head>
