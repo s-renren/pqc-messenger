@@ -1,8 +1,8 @@
-import { fixupPluginRules } from '@eslint/compat';
 import js from '@eslint/js';
 import gitignore from 'eslint-config-flat-gitignore';
 import prettierConfig from 'eslint-config-prettier';
 import reactPlugin from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -27,10 +27,10 @@ export default tseslint.config(
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-non-null-assertion': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
-      // complexity: ['error', 5],
-      // 'max-depth': ['error', 2],
-      // 'max-nested-callbacks': ['error', 3],
-      // 'max-lines': ['error', 200],
+      complexity: ['error', 5],
+      'max-depth': ['error', 2],
+      'max-nested-callbacks': ['error', 3],
+      'max-lines': ['error', 200],
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
@@ -46,8 +46,7 @@ export default tseslint.config(
     files: ['**/*.tsx'],
     plugins: {
       react: reactPlugin,
-      // eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-unsafe-argument
-      'react-hooks': fixupPluginRules(require('eslint-plugin-react-hooks')),
+      'react-hooks': reactHooks,
     },
     settings: {
       react: { version: 'detect' },
