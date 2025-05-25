@@ -31,6 +31,7 @@
     "typecheck": "npm run hcm && tsc --noEmit"
   },
   "prisma": {
+    "schema": "./prisma",
     "seed": "node -r esbuild-register --enable-source-maps prisma/seed.ts"
   },
   "dependencies": {
@@ -41,7 +42,6 @@
     "better-auth": "^1.2.8",
     "dotenv": "^16.5.0",
     "next": "^15.1.8",
-    "pg": "^8.16.0",
     "prisma": "^6.8.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
