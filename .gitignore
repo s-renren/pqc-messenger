@@ -16,6 +16,7 @@
 tsconfig.tsbuildinfo
 *.css.d.ts
 *.css.d.ts.map
+/coverage
 
 # debug
 npm-debug.log*
