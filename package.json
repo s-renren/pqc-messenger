@@ -3,25 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "run-s generate",
+    "predev": "run-s generate migrate:deploy",
     "dev": "run-p dev:*",
-    "dev:next": "next dev -p 3000",
+    "dev:next": "next dev -p 3300",
     "dev:frourio": "frourio-next --watch",
     "dev:hcm": "hcm 'src/**/*.module.css' -w",
+    "dev:prisma": "prisma generate --watch",
     "hcm": "hcm 'src/**/*.module.css'",
     "build": "npm run generate && next build",
     "generate": "run-p generate:*",
     "generate:frourio": "frourio-next",
+    "generate:prisma": "prisma generate",
+    "migrate:dev": "prisma migrate dev && prisma db seed",
+    "migrate:dev:createonly": "prisma migrate dev --create-only",
+    "migrate:deploy": "prisma migrate deploy && prisma db seed",
+    "migrate:reset": "prisma migrate reset",
     "lint": "run-p lint:*",
     "lint:js": "eslint .",
     "lint:prettier": "prettier --check \"./**/*.{ts,tsx,js}\" --ignore-path .gitignore",
     "lint:style": "stylelint \"src/**/*.css\" --ignore-path .gitignore",
-    "fix:lint": "npm run lint:js -- --fix && npm run lint:style -- --fix && npm run lint:prettier -- --write",
-    "start": "next start",
+    "lint:prisma": "prisma format",
+    "fix:lint": "npm run fix:prettier && npm run lint:js -- --fix && npm run lint:style -- --fix && npm run lint:prisma && npm run fix:prettier",
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "start": "npm run migrate:deploy && next start",
     "typecheck": "npm run hcm && tsc --noEmit"
   },
+  "prisma": {
+    "seed": "node -r esbuild-register --enable-source-maps prisma/seed.ts"
+  },
   "dependencies": {
+    "@prisma/client": "^6.8.2",
+    "better-auth": "^1.2.8",
+    "dotenv": "^16.5.0",
     "next": "^15.1.8",
+    "pg": "^8.16.0",
+    "prisma": "^6.8.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "zod": "^3.25.28"
@@ -30,8 +46,11 @@
     "@frourio/next": "^0.18.1",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^22.15.21",
+    "@types/pg": "^8.15.2",
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
+    "esbuild": "^0.25.4",
+    "esbuild-register": "^3.6.0",
     "eslint": "^9.27.0",
     "eslint-config-flat-gitignore": "^2.1.0",
     "eslint-config-prettier": "^10.1.5",
@@ -48,5 +67,8 @@
     "stylelint-config-standard": "^37.0.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.1"
+  },
+  "engines": {
+    "node": ">=24.0.0"
   }
 }
