@@ -60,3 +60,4 @@ export default function Home(): React.ReactElement {
 
 // ねたい
 //寝よう
+//駄目じゃなくないよ
