@@ -1,11 +1,11 @@
 import { config } from 'dotenv';
 import { z } from 'zod';
 
-const NODE_ENV = z
-  .enum(['test', 'development', 'production', 'cli'])
-  .default('cli')
-  .parse(process.env.NODE_ENV);
-
 config();
+export function envParser(env?: string): 'test' | 'development' | 'production' | 'cli' {
+  return z.enum(['test', 'development', 'production', 'cli']).default('cli').parse(env);
+}
+
+const NODE_ENV = envParser(process.env.NODE_ENV);
 
 export { NODE_ENV };
