@@ -2,7 +2,9 @@ import { config } from 'dotenv';
 import { z } from 'zod';
 
 config();
-export function envParser(env?: string): string {
+type ENV_VALUE_TYPE = 'test' | 'development' | 'production' | 'cli';
+
+export function envParser(env?: string): ENV_VALUE_TYPE {
   return z.enum(['test', 'development', 'production', 'cli']).default('cli').parse(env);
 }
 
