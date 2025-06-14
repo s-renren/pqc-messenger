@@ -14,8 +14,6 @@ const coverageBase = {
   exclude: [
     'server/lib/prismaClient.ts',
     'src/app/layout.tsx',
-    'src/app/page.tsx',
-    'server/utils/serverEnvs.ts',
     'src/utils/apiClient.ts',
     'src/**/*.module.css.d.ts',
     'src/utils/condition.ts',
